@@ -28,7 +28,7 @@ class Model(object):
 			outputs, state_fw, state_bw = tf.contrib.rnn.static_bidirectional_rnn(cell_fw=lstm_fw_cell, cell_bw=lstm_bw_cell, inputs = _X, dtype=tf.float32)
 			outputs = tf.stack(outputs, axis=1)
 			
-		 	h1_rnn = tf.expand_dims(outputs, -1)						
+			h1_rnn = tf.expand_dims(outputs, -1)						
 
 		 	## Max pooling
 			h1_pool = tf.nn.max_pool(h1_rnn,ksize=[1, filter1_size, 1, 1],strides=[1, 1, 1, 1], padding='VALID') 				
@@ -98,7 +98,7 @@ class Model(object):
 				self.input_y 	:y_batch
 					}
 			_, step, loss, accuracy, predictions = self.sess.run([self.optimizer, self.global_step, self.loss, self.accuracy, self.predictions], feed_dict)
-			print ("step "+str(step) + " loss "+str(loss) +" accuracy "+str(accuracy))
+			# print ("step "+str(step) + " loss "+str(loss) +" accuracy "+str(accuracy))
 			return step,accuracy
 
 	def test_step(self, W_batch, d1_batch, d2_batch, y_batch):
